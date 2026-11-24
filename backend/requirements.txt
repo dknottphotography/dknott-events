@@ -1,0 +1,19 @@
+# SnapFind backend — 100% free & open-source, no paid APIs.
+flask==3.1.0
+flask-cors==5.0.0
+flask-sqlalchemy==3.1.1
+pyjwt==2.10.1
+qrcode==7.4.2
+pillow==11.1.0
+numpy==1.26.4
+# Face matching: descriptors are computed in the browser (face-api.js);
+# the server only stores them and compares with numpy — no ML models here.
+python-dotenv==1.0.1
+gunicorn==23.0.0
+# Couple's gallery: permanent photo/video storage on the client's
+# Cloudinary account (unsigned upload preset — no API secret in code).
+cloudinary==1.41.0
+# Permanent records database (Neon Postgres) — used when DATABASE_URL
+# points at Postgres; without it the app falls back to local SQLite,
+# which Render's free tier wipes on every deploy/restart.
+psycopg[binary]>=3.2,<3.3

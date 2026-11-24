@@ -1,0 +1,265 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============ SnapFind — "Memory Abyss" design system ============ */
+
+:root {
+  --abyss: #040110;
+  --abyss-2: #0a0620;
+  --bio-cyan: #67e8f9;
+  --bio-teal: #2dd4bf;
+  --uv-magenta: #e879f9;
+  --uv-violet: #a78bfa;
+  --ember: #fbbf24;
+  --ink: #f4f2ff;
+  --ink-dim: #a7a3c7;
+  /* RGB channel tokens consumed by Tailwind colour classes */
+  --c-abyss: 4 1 16;
+  --c-abyss2: 10 6 32;
+  --c-inkdim: 167 163 199;
+  --c-biocyan: 103 232 249;
+  --c-bioteal: 45 212 191;
+  --c-uvviolet: 167 139 250;
+}
+
+/* ============ Light theme ("day vision") ============ */
+[data-theme="light"] {
+  --abyss: #f7f3ec;
+  --abyss-2: #ffffff;
+  --ink: #17122e;
+  --ink-dim: #5c5878;
+  --c-abyss: 247 243 236;
+  --c-abyss2: 255 255 255;
+  --c-inkdim: 92 88 120;
+  --c-biocyan: 14 116 144;
+  --c-bioteal: 13 148 136;
+  --c-uvviolet: 124 58 237;
+}
+
+[data-theme="light"] body {
+  background-color: var(--abyss);
+  color: var(--ink);
+}
+
+/* The homepage's fixed WebGL scene is a dark "night" backdrop; in the
+   light theme it is hidden so page text sits on the ivory background. */
+[data-theme="light"] .cinematic-scene {
+  display: none;
+}
+
+[data-theme="light"] .glass {
+  background: rgba(23, 18, 46, 0.04);
+  border-color: rgba(23, 18, 46, 0.1);
+}
+
+[data-theme="light"] .glass-deep {
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(23, 18, 46, 0.1);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-track {
+  background: #efe9dd;
+}
+
+/* White-based utilities were designed as light-on-dark; in the light
+   theme they become ink-on-light equivalents. Chips that sit on photos
+   or dark scrims (same-element dark backgrounds) keep white text. */
+[data-theme="light"] .text-white {
+  color: #17122e;
+}
+[data-theme="light"] .bg-black\/70.text-white,
+[data-theme="light"] .bg-black\/60.text-white,
+[data-theme="light"] .bg-black\/80.text-white,
+[data-theme="light"] .bg-emerald-500\/90.text-white,
+[data-theme="light"] .bg-white\/10.text-white {
+  color: #ffffff;
+}
+[data-theme="light"] .bg-white\/5 { background-color: rgb(23 18 46 / 0.04); }
+[data-theme="light"] .bg-white\/10 { background-color: rgb(23 18 46 / 0.07); }
+[data-theme="light"] .bg-white\/15 { background-color: rgb(23 18 46 / 0.1); }
+[data-theme="light"] .bg-white\/20 { background-color: rgb(23 18 46 / 0.13); }
+[data-theme="light"] .bg-white\/10.text-white { background-color: rgb(255 255 255 / 0.1); }
+[data-theme="light"] .border-white\/5 { border-color: rgb(23 18 46 / 0.07); }
+[data-theme="light"] .border-white\/10 { border-color: rgb(23 18 46 / 0.12); }
+[data-theme="light"] .border-white\/15 { border-color: rgb(23 18 46 / 0.16); }
+[data-theme="light"] .border-white\/30 { border-color: rgb(23 18 46 / 0.3); }
+[data-theme="light"] .ring-white\/10 { --tw-ring-color: rgb(23 18 46 / 0.12); }
+[data-theme="light"] .ring-white\/30 { --tw-ring-color: rgb(23 18 46 / 0.3); }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--abyss);
+  color: var(--ink);
+  font-family: "Sora", system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.font-display {
+  font-family: "Unbounded", "Sora", system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--uv-magenta);
+  color: #040110;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #efe9dd;
+}
+::-webkit-scrollbar-thumb {
+  background: #c9c2b2;
+  border-radius: 8px;
+}
+
+/* ---- signature utilities ---- */
+
+.eyebrow {
+  font-family: "Sora", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--bio-cyan);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.glass-deep {
+  background: rgba(6, 2, 24, 0.55);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn-bio {
+  position: relative;
+  background: #0e7490;
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.btn-bio:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.btn-ghost {
+  border: 1px solid rgba(103, 232, 249, 0.35);
+  color: var(--bio-cyan);
+  transition: all 0.25s ease;
+}
+
+.btn-ghost:hover {
+  background: rgba(103, 232, 249, 0.08);
+  border-color: rgba(103, 232, 249, 0.7);
+}
+
+/* film grain over everything */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* slow drift for ambient orbs */
+@keyframes abyss-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(4%, -6%, 0) scale(1.12); }
+}
+
+.abyss-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  animation: abyss-drift 14s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* outlined display text */
+.text-stroke {
+  -webkit-text-stroke: 1px rgba(244, 242, 255, 0.35);
+  color: transparent;
+}
+
+/* ---- Photographer Studio (admin) surfaces -------------------------------
+   Solid, hand-finished styling for the studio pages: white panels with a
+   hairline border and a whisper of shadow, plain fields, quiet buttons.
+   No glass, no glow, no gradients. Light theme only. */
+.panel {
+  background: #ffffff;
+  border: 1px solid rgba(23, 18, 46, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(23, 18, 46, 0.05);
+}
+.panel-inset {
+  background: #faf7f0;
+  border: 1px solid rgba(23, 18, 46, 0.09);
+  border-radius: 8px;
+}
+.field {
+  background: #ffffff;
+  border: 1px solid rgba(23, 18, 46, 0.18);
+  border-radius: 8px;
+  color: #17122e;
+}
+.field:focus {
+  border-color: #0e7490;
+  outline: 2px solid rgba(14, 116, 144, 0.22);
+}
+.btn-solid {
+  background: #0e7490;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
+.btn-solid:hover { background: #155e75; }
+.btn-solid:disabled { opacity: 0.5; }
+.btn-outline {
+  background: #ffffff;
+  border: 1px solid rgba(23, 18, 46, 0.2);
+  border-radius: 8px;
+  font-weight: 500;
+  color: #17122e;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.btn-outline:hover { border-color: rgba(23, 18, 46, 0.45); }
+.btn-danger {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid rgba(185, 28, 28, 0.35);
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.15s ease;
+}
+.btn-danger:hover { background: #fee2e2; }
+.btn-teal {
+  background: #0f766e;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
+.btn-teal:hover { background: #115e59; }
+.btn-teal:disabled { opacity: 0.5; }
